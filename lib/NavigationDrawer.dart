@@ -4,6 +4,7 @@ import 'package:talent/Card.dart';
 import 'package:talent/LoginDesign.dart';
 import 'package:talent/ProductList.dart';
 import 'package:talent/ProductPage.dart';
+import 'package:talent/Screens/ProfileScreen.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({super.key});
@@ -84,7 +85,17 @@ Widget buildMenuItems(BuildContext context) => Column(
         ListTile(
           leading: const Icon(Icons.android_rounded),
           title: const Text('PROFILE DESIGN'),
-          onTap: () {},
+          onTap: () {
+
+              Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return ProfileScreen();
+                },
+              ),
+            );
+
+          },
         ),
         ListTile(
           leading: const Icon(Icons.android_rounded),

@@ -88,7 +88,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 return Container(
                   child: Column(
                     children: [
-                      ProductCard(snapshot.data![index].title, snapshot.data![index].price.toString(), snapshot.data![index].description , snapshot.data![index].images),
+                      ProductCard2(snapshot.data![index].title, snapshot.data![index].price.toString(), snapshot.data![index].description , snapshot.data![index].images),
                     ],
                   ),
                 );
@@ -102,6 +102,98 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+
+Widget ProductCard2(String product_title, String product_price, String product_description, List<dynamic> product_images) {
+  return Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        bottomLeft: Radius.circular(16),
+                      ),
+                      child: Image.network(
+                        product_images[0],
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text(
+                              product_title,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            product_description.length > 50 ? product_description.substring(0, 50)+'...' : product_description,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow[700],
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                '4.5',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'P' + product_price,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                child: Text('Add to Cart'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+}
+
 
 class ProductCard extends StatelessWidget {
   
